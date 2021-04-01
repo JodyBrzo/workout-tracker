@@ -21,7 +21,7 @@ router.post("/api/workouts", ({ body }, res) => {
   //   });
 });
 
-router.put("api/workouts", ({ body }, res) => {
+router.put("api/workouts/:id", ({ body }, res) => {
 
 
 })

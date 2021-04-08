@@ -3,35 +3,41 @@ const db = require("../models");
 
 router.post("/api/transaction", ({ body }, res) => {
   // Transaction.create(body)
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
   //   })
   //   .catch(err => {
   //     res.status(400).json(err);
   //   });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
-  // Transaction.insertMany(body)
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
+router.post("/api/workouts", (req, res) => {
+  db.Workout.create({})
+    .then((dbWorkout) => {
+        const data = JSON.parse(JSON.stringify(dbWorkout));
+        res.json({"data": "hi"});
+      })
+      .catch(err => {
+        res.json(err);
+      });
 });
 
-router.put("api/workouts/:id", ({ body }, res) => {
-
-
-})
+router.put("/api/workouts/:id", (req, res) => {
+  db.Workout.findOneAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true })
+  .then(dbWorkout => {
+    res.json(dbWorkout);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  });
+});
 
 router.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .sort({ day: -1 })
     .limit(1)
-    .then(dbTransaction => {
-      const data = JSON.parse(JSON.stringify(dbTransaction));
+    .then(dbWorkout => {
+      const data = JSON.parse(JSON.stringify(dbWorkout));
       let totalDuration = 0;
       data[0].exercises.forEach(exercise => totalDuration = totalDuration +  exercise.duration);
       data[0].totalDuration = totalDuration;
@@ -45,8 +51,8 @@ router.get("/api/workouts", (req, res) => {
 router.get("/api/workouts/range", (req, res) => {
   // Transaction.find({})
   //   .sort({ date: -1 })
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
   //   })
   //   .catch(err => {
   //     res.status(400).json(err);

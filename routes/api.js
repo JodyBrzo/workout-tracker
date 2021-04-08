@@ -27,14 +27,19 @@ router.put("api/workouts/:id", ({ body }, res) => {
 })
 
 router.get("/api/workouts", (req, res) => {
-  // Transaction.find({})
-  //   .sort({ date: -1 })
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
+  db.Workout.find({})
+    .sort({ day: -1 })
+    .limit(1)
+    .then(dbTransaction => {
+      const data = JSON.parse(JSON.stringify(dbTransaction));
+      let totalDuration = 0;
+      data[0].exercises.forEach(exercise => totalDuration = totalDuration +  exercise.duration);
+      data[0].totalDuration = totalDuration;
+      res.json(data);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
 });
 
 router.get("/api/workouts/range", (req, res) => {

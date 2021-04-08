@@ -30,6 +30,7 @@
 * JavaScript Modules
 * Bootstrap
 * Heroku
+* Atlas
 
 # Installation 
 

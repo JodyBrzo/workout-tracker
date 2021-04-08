@@ -8,7 +8,7 @@
 You can view the live deployed app on heroku here [Deployed Note Taker App ](https://brzo-workout-tracker.herokuapp.com/)
 
 
-![SAMPLE](public/assets/img/mockup-start.png)
+![SAMPLE](./public/assets/img/mockup-start.png)
 
 ![SAMPLE](public/assets/img/mockup-add.png)
 

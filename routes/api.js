@@ -1,21 +1,10 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.post("/api/transaction", ({ body }, res) => {
-  // Transaction.create(body)
-  //   .then(dbWorkout => {
-  //     res.json(dbWorkout);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
-});
-
 router.post("/api/workouts", (req, res) => {
   db.Workout.create({})
     .then((dbWorkout) => {
-        const data = JSON.parse(JSON.stringify(dbWorkout));
-        res.json({"data": "hi"});
+        res.json(dbWorkout);
       })
       .catch(err => {
         res.json(err);
@@ -23,7 +12,7 @@ router.post("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-  db.Workout.findOneAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true })
+  db.Workout.findOneAndUpdate({ _id: req.params.id }, { $push: { exercises: req.body } }, { new: true })
   .then(dbWorkout => {
     res.json(dbWorkout);
   })

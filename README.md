@@ -4,6 +4,10 @@
  View, create and track workouts using Express and MongoDB.  This app allows you to log multiple exercises in a workout on a given day. You can also track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, you can track your distance traveled.
 
 
+# Usage
+You can view the live deployed app on heroku here [Deployed Note Taker App ](https://brzo-workout-tracker.herokuapp.com/)
+
+
 ![SAMPLE](public/assets/img/mockup-start.png)
 
 ![SAMPLE](public/assets/img/mockup-add.png)
@@ -32,12 +36,10 @@
 * Heroku
 * Atlas
 
+
 # Installation 
 
 From the command line change directory to where you cloned this repo to then type 'npm install', then to run it type 'node server.js'
-
-# Usage
-You can view the live deployed app on heroku here [Deployed Note Taker App ](https://radiant-sierra-40853.herokuapp.com/)
 
 
 # License
